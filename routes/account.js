@@ -42,8 +42,9 @@ exports.register_post = function(req, res) {
 		return res.render('account/register.html');
 	} else {
 
-        User.register(new User({ username : req.body.username }), req.body.password, function(err, new_user) {
+        User.register(new User({ username : req.body.username, email : req.body.email, dateMovedIn: req.body.email }), req.body.password, function(err, new_user) {
             if (err) {
+                console.log(err)
                 return res.render('account/register.html');
             }
             console.log("**********");

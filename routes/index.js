@@ -50,6 +50,8 @@ exports.user_posts = function(req, res) {
         } else {
 
           var template_data = {
+            username : user.username,
+            email : user.email,
             title : user.username + "'s Blog Posts",
             posts : blogposts, 
             currentUser : req.user,
