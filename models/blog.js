@@ -5,6 +5,7 @@ var blogSchema = new Schema({
     title     : String,
     urltitle  : String,
     body      : String,
+    category  : String,
     lastupdated : { type: Date, default: Date.now },
     user : { type: Schema.Types.ObjectId, ref: 'User' }
 });

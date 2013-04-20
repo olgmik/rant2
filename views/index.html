@@ -1,3 +1,31 @@
+<div class="row">
+	<div class="span8">
+		<form method="POST" action="/category">
+			<select name="category">
+			  <option value="category4">category4</option>
+			  <option value="category">category</option>
+			</select>
+		<input type="submit" value="Go!">
+		</form>
+<br/>
+
+    	<h1>{{title}}</h1>
+    	<br>
+
+	    {{#posts}}
+	        <h2>{{ title }}</h2>
+	        <p>by <a href="/user/{{user.username}}">{{user.username}}</a></p>
+	        <p>category: <a href="/blog/{{body.category}}">{{blog.category}}</a></p>
+	        
+	        <p>{{& body }}</p>
+
+	        
+	        <hr>
+	    {{/posts}}
+	    <br><br>
+
+    </div>
+</div>
 
 <div class="row">
 

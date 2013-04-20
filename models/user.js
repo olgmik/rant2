@@ -4,7 +4,8 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = new Schema({
 	email : String,
-	dateMovedIn: Date
+	dateMovedIn: Date,
+	dateMovedOut: Date
 });
 userSchema.plugin(passportLocalMongoose);
 

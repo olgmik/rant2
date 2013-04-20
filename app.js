@@ -70,6 +70,9 @@ var routes = require('./routes/index.js');
 var account = require('./routes/account.js');
 
 app.get('/', routes.index);
+
+app.post('/category', routes.category_posts);
+
 app.get('/user/:username', routes.user_posts);
 
 // create a blog post
@@ -88,10 +91,11 @@ app.post('/login', passport.authenticate('local'), account.login_post);
 app.get('/register', account.register);
 app.post('/register', account.register_post);
 
+// edit account
+app.get('/edit_account/:username', account.ensureAuthenticated, account.edit);
+
 // logout
 app.get('/logout', account.logout);
-
-
 
 // Turn the server on!
 var port = process.env.PORT || 5000;

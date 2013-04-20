@@ -30,6 +30,31 @@ exports.index =  function(req,res){
   
 };
 
+exports.category_posts = function(req, res) {
+
+  var blogQuery = Blog.find({ category:req.body.category} );
+      blogQuery.sort('-lastupdated');
+      blogQuery.exec(function(err, posts_by_category) {
+
+    if (err) {
+      res.send('unable to find any posts');
+
+    } else {
+
+            var template_data = {
+            title : req.body.category + "Category Blog Posts",
+            posts : posts_by_category,
+            bloguser : req.user
+          };
+
+          res.render('category_posts.html', template_data);
+
+    }
+
+  })
+  
+};
+
 exports.user_posts = function(req, res) {
 
   var userQuery = User.findOne({username:req.param('username')});
@@ -52,10 +77,13 @@ exports.user_posts = function(req, res) {
           var template_data = {
             username : user.username,
             email : user.email,
-            title : user.username + "'s Blog Posts",
+            dateMovedIn: user.dateMovedIn,
+            dateMovedOut: user.dateMovedOut,
+            title : user.username + "'s Account",
             posts : blogposts, 
             currentUser : req.user,
             bloguser : user
+
           };
           
           // if logged in, is this user the requested user?
@@ -68,11 +96,9 @@ exports.user_posts = function(req, res) {
         
       });
 
-
     }
 
   })
-
   
 }
 
@@ -98,6 +124,7 @@ exports.write_post = function(req, res){
 
         blogpost.title = req.body.title;
         blogpost.body = req.body.body;
+        blogpost.category = req.body.category;
         blogpost.save();
 
         res.redirect('/edit/'+blogpost.id);
@@ -110,6 +137,8 @@ exports.write_post = function(req, res){
     blogpost.title = req.body.title;
     blogpost.urltitle = req.body.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_')
     blogpost.body = req.body.body;
+    blogpost.category = req.body.category;
+
     
     blogpost.user = req.user; // associate logged in user with blog post
     
