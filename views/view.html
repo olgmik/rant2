@@ -1,0 +1,75 @@
+<div class="hero-unit" >
+<div class="row-fluid">
+		<div class="span12">
+
+			<h1>Enter address to view</h1>
+
+			<div class="span12">
+				<form method="POST" action="/category">
+				<input type="text" name="building" id="building" placeholder="street address" >
+				<input type="text" name="apartment" id="apartment" placeholder="apt">
+				<input type="text" name="city" id="city" placeholder="city">
+				<input type="text" name="zip" id="zip" placeholder="zip">
+
+				&nbsp;&nbsp;<span class="titles">Filter by</span>&nbsp;&nbsp;
+				<select name="category">
+				  <option value="all">all</option>
+				  <option value="sound">sound</option>
+				  <option value="repairs">maintenance</option>
+				  <option value="cleanliness">cleanliness</option>
+				  <option value="aesthetics">aesthetics</option>
+				  <option value="ethics">ethics</option>
+				  <option value="security">security</option>
+				  <option value="pets">pets</option>
+				  <option value="neighbors">neighbors</option>
+				  <option value="landlord">landlord</option>
+				  <option value="broker">broker</option>
+				  <option value="super">super</option>
+				  <option value="other">other</option>
+				</select>&nbsp;&nbsp;
+				<input type="submit" id="search" value="Search">
+				</form>		
+			</div>
+		</div>
+	<div class="row-fluid">	
+		<div class="span6">
+
+		<legend>Con</legend>
+	    {{#posts}}
+	    	{{#isCon}}
+		    	
+		       <p> 
+		       	<span class="titles">{{ title }}</span><br/>
+		        by <a href="mailto:{{user.email}}" target="_blank">{{user.username}}</a><br/>
+		        <span class="titles">Category:</span> {{category}}<br/>
+		         <span class="titles">{{commentCount}} Comments</span><br/> 
+		        <a href="/get_single_post/{{_id}}">{{intro}}</a>
+		    	</p>
+		    {{/isCon}}
+	    {{/posts}}
+		</div>
+
+		<div class="span6">
+
+	    <legend>Pro</legend>
+	    {{#posts}}
+	    	{{^isCon}}
+		    	
+		        <p> 
+		        <span class="titles">{{ title }}</span><br/>
+		        by {{user.username}} <a href="mailto:{{user.email}}" target="_blank"><i clas="icon-heart"></i></a><br/>
+		        <span class="titles">Category:</span> {{category}}<br/>
+		         <span class="titles">{{commentCount}} Comments</span><br/> 
+		        <a href="/get_single_post/{{_id}}">{{intro}}</a>
+		    	</p>
+	    	{{/isCon}}
+	    {{/posts}}
+		</div>
+
+		<div class="clear"></div>
+	</div>
+
+    </div>
+</div>
+
+</div>

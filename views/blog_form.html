@@ -1,38 +1,129 @@
 <style>
-	textarea { width:500px;}
+	textarea { width:240px; min-height: 150px;}
 </style>
-
-<div class="row">
+<div class="hero-unit">
 	
-	<div class="span12">
+	<div class="row-fluid">	
 
-		<h1>{{ title }}</h1>
+		<div class="span12">
+			
+			<h1>{{ title }}</h1>
+
+		</div> 
+
+	<div class="row-fluid">
+
+				<div class="span7">
+
+					<form method="POST" action="/write" enctype="multipart/form-data">
+						<div class="field required">
+						<label for="id_title">Title</label>
+						<input type="text" required name="title" id="id_title" value="{{blogpost.title}}">
+					</div>
+
+					<div class="field required">
+
+					<label for="post_category">Category</label>
+					<select name="category">
+					  <option value="all">all</option>
+					  <option value="sound">sound</option>
+					  <option value="maintenance">maintenance</option>
+					  <option value="cleanliness">cleanliness</option>
+					  <option value="security">security</option>
+					  <option value="pets">pets</option>
+					  <option value="neighbors">neighbors</option>
+					  <option value="ethics">ethics</option>
+					  <option value="landlord">landlord</option>
+					  <option value="broker">broker</option>
+					  <option value="super">super</option>
+					</select>
+			
+					</div>
+
+					<div class="field required">
+						<label for="post_address">Building Address</label>
+						<input type="text" name="building" id="id_building" value="{{blogpost.address.building}}">
+					</div>
+
+					<div class="field">
+						<label for="post_address">Apartment</label>
+						<input type="text" name="apartment" id="id_apartment" value="{{blogpost.address.apartment}}">
+					</div>
+
+					<div class="field required">
+						<label for="post_address">City</label>
+						<input type="text" name="city" id="id_city" value="{{blogpost.address.city}}">
+					</div>
+					
+					<div class="field required">
+						<label for="post_address">Zip Code</label>
+						<input type="text" name="zip" id="id_zip" value="{{blogpost.address.zip}}">
+					</div>
+
+					<div class="field required">
+						<label for="post_body" id="label_post">Post</label>
+						<textarea name="body" id="post_body">{{blogpost.body}}</textarea>
+					</div>
+
+					<div class="field required" id="checkbox">
+
+					{{#isCon}}
+						<input class="inline" type="checkbox" name="isCon" id="con" checked>						
+					{{/isCon}}
+
+					{{^isCon}}
+						<input class="inline" type="checkbox" name="isCon" id="pro">
+					{{/isCon}}
+					&nbsp;&nbsp;Leave checked if current review is a CON to living at the addres.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unchek if it's a PRO.</p>
+					</div>
+
+					<div class="field">
+						<label for="image_title">1st Image Title</label>
+						<input type="text" name="image_title" id="image_title">
+					</div>
+
+					<div class="field">
+						<label for="caption">1st Image Caption</label>
+						<input type="text" name="image_caption">
+					</div>
+
+					<div class="field">
+						<label for="image">1st Image Upload</label>
+						<input type="file" name="image" id="image">
+					</div>
+							
+					<div class="field">
+						<label for="video">Video URL</label>
+						<input type="text" name="video" id="video">
+					</div>
+				
+					<input type="submit" class="btn" id="submit_review" value="Save">
+
+				{{#blogpost}}
+				<input type="hidden" name='blog_id' id='blog_id' value='{{blogpost.id}}'>
+				</form>
+
+			</div> <!--  <div class="span6"> for the form -->
+
+			<div class="span5" >
+
+				<div class="display_thumbs">
+					{{#blogpost.photos}}
+					<img src="https://s3.amazonaws.com/rentorvent/{{image}}" ><br/>
+					<a href="/deleteImage/{{image}}/{{blogpost._id}}">Delete</a>
+					{{/blogpost.photos}}
+					{{/blogpost}}
+				</div>
+
+			</div> <!--  for the last div -->
+
+		</div> <!--  for the row -->
+
 	</div>
-</div>
-<div class="row">
-	<div class="span8">
 
-		<form method="POST" action="/write">
-			<div class="field required">
-				<label for="id_title">Title</label>
-				<input type="text" required name="title" id="id_title" value="{{blogpost.title}}">
-			</div>
-
-			<div class="field required">
-				<label for="post_category">Category</label>
-				<input type="text" name="category" id="id_category" value="{{blogpost.category}}">
-			</div>
-			
-			<div class="field required">
-				<label for="post_body">Post</label>
-				<textarea name="body" id="post_body" rows="4" cols="150">{{blogpost.body}}</textarea>
-			</div>
-			
-			
-			{{#blogpost}}
-			<input type="hidden" name='blog_id' id='blog_id' value='{{blogpost.id}}'>{{/blogpost}}
-			
-			<input type="submit" class="btn" value="Save">
-		</form>
-	</div>
 </div>
+
+
+
+
+

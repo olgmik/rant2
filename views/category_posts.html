@@ -2,17 +2,21 @@
 
     <div class="span9">
 
-    	<h1>{{title}}</h1>
+    	<h1>{{title}}</a></h1>
     	<br>
 
 	    {{#posts}}
 	        <h2>
-	        	{{ title }}
+	        	<a href="/get_single_post/{{id}}">{{ title }}</a>
 	        </h2>
 	        
 	        <p>{{& category }}</p>
 	        <p>{{& user }}</p>
 	        <p>{{& body }}</p>
+	        <strong>Comments</strong><br/> 
+		        {{#comments}}
+		        	{{text}}
+		       	{{/comments}}
 
 	        <br>
 	        

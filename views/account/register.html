@@ -1,40 +1,68 @@
-<div class="row">
-	<div class="span8">
+<div class="hero-unit">
+
+	<div class="row-fluid">
 		<h1>Register</h1>
-		<form method="POST">
-			<div class="">
-				<label for="username">Username</label>
-				<input type="text" name="username" id="username">
-			</div>
+	</div>
+	<div class="row-fluid">
 
-			<div class="">
-				<label for="email">E-mail</label>
-				<input type="text" name="email" id="email">
-			</div>
+		<div class="span12">
+			
+			<form method="POST" >
 
-			<div class="">
-				<label for="dateMovedIn">Date Moved In</label>
-				<input type="date" name="dateMovedIn" id="dateMovedIn">
-			</div>
+				<div class="">
+					<label class="inline" for="username">Username</label>
+					<input type="text" name="username" id="username">
+				</div>
 
-			<div class="">
-				<label for="dateMovedOut">Date Moved Out</label>
-				<input type="date" name="dateMovedOut" id="dateMovedOut">
-			</div>
+				<div class="">
+					<label class="inline" for="email">Email address</label>
+	  				<input type="text" name="email" id="email">
+				</div>
 
-			<div class="">
-				<label for="password">Password</label>
-				<input type="password" name="password" id="password">
-			</div>
+				<div class="field required">
+					<label class="inline" for="post_address">Street Address</label>
+					<input type="text" name="building" id="building" >
+				</div>
 
-			<div class="">
-				<label for="confirm">Password again</label>
-				<input type="password" name="confirm" id="confirm">
-			</div>
+				<div class="field">
+					<label class="inline" for="post_address">Apartment</label>
+					<input type="text" name="apartment" id="apartment">
+				</div>
 
-			<div class="field">
-				<input type="submit" class="btn btn-primary" value="Register">
-			</div>
-		</form>
+				<div class="field required">
+					<label class="inline" for="post_address">City</label>
+					<input type="text" name="city" id="city">
+				</div>
+				
+				<div class="field required">
+					<label class="inline" for="post_address">Zip Code</label>
+					<input type="text" name="zip" id="zip">
+				</div>
+
+				<div class="">
+					<label class="inline" for="dateMovedIn">Date Moved In</label>
+					<input type="date" name="dateMovedIn" id="dateMovedIn">
+				</div>
+
+				<div class="">
+					<label class="inline" for="dateMovedOut">Date Moved Out</label>
+					<input type="date" name="dateMovedOut" id="dateMovedOut">
+				</div>
+
+				<div class="">
+					<label class="inline" for="password">Password</label>
+					<input type="password" name="password" id="password">
+				</div>
+
+				<div class="">
+					<label class="inline" for="confirm">Password again</label>
+					<input type="password" name="confirm" id="confirm">
+				</div>
+
+				<div class="submit">
+					<input type="submit" class="btn" id="register" value="Register">
+				</div>
+			</form>
+		</div>
 	</div>
 </div>

@@ -1,50 +1,57 @@
-<div class="row">
-	<div class="span8">
-		<form method="POST" action="/category">
-			<select name="category">
-			  <option value="category4">category4</option>
-			  <option value="category">category</option>
-			</select>
-		<input type="submit" value="Go!">
-		</form>
-<br/>
+<style>html {
+    height: 100%;
+}
 
-    	<h1>{{title}}</h1>
-    	<br>
+body {
+    height: 100%; 
+    margin: 0; 
+    padding: 0;
 
-	    {{#posts}}
-	        <h2>{{ title }}</h2>
-	        <p>by <a href="/user/{{user.username}}">{{user.username}}</a></p>
-	        <p>category: <a href="/blog/{{body.category}}">{{blog.category}}</a></p>
-	        
-	        <p>{{& body }}</p>
+}
 
-	        
-	        <hr>
-	    {{/posts}}
-	    <br><br>
+.container{
+    height: 100%; 
+    margin: auto; 
+    padding: auto;
+}
+</style>
+<div class="hero-unit" id="index">
 
-    </div>
-</div>
+	<div class="row-fluid" id="rent_row">
+     	
+        <div class="span5" id="rent">
+     			RENT
+     	</div>
 
-<div class="row">
-
-    <div class="span9">
-
-    	<h1>{{title}}</h1>
-    	<br>
-
-	    {{#posts}}
-	        <h2>{{ title }}</h2>
-	        <p>by <a href="/user/{{user.username}}">{{user.username}}</a></p>
-	        <p>{{& body }}</p>
-
-	        
-	        <hr>
-	    {{/posts}}
-	    <br><br>
-
+    	<div class="span7" id="paragraph1">
+     		<p><b>WELCOME</b> to the Rent or Vent,<br/>
+                a place to find and share information<br/> about apartments by renters for renters. <br/>
+            
+                Check out <b>VIEW</b> section for apartment and buildings reviewed by their current and former tenants. 
+            </p>
+            
+        </div>
     </div>
 
-    
+    <div class="row-fluid" id="row_vent">
+
+    	<div class="span5"  id="paragraph2">
+            <p>
+                Sometimes all you've left to do is let it off your heart and move on. Review, <b>Vent</b>, Comment or Chat about your rental experience in the Review section. Lets help each other find a perfect home and as we do it, change real estate business culture. </p>
+           
+        </p>
+		</div>
+        <div class="span1" id="or">
+            or       
+        </div>
+     	<div class="span6" id="vent">
+            VENT        
+		</div>
+
+    </div>
+
+
+
+
+
 </div>

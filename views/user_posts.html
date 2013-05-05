@@ -1,41 +1,53 @@
+<div class="hero-unit">
 
-<div class="row">
-
-    <div class="span9">
-
-    	<h1>{{title}}</h1>
-    	<h5>User Name: {{username}}</h5>
-    	<h5>E-mail: {{email}}</h5>
-    	<h5>Date Moved In: {{dateMovedIn}}</h5>
-    	<h5>Date Moved Out: {{dateMovedOut}}</h5>
-    	<br>
-    	<h5>Edit User Account</h5>
-
-				{{#isOwner}}
-		        <a href="/edit_account/{{username}}" class="btn btn-primary btn-small">edit account</a>
-		        {{/isOwner}}
-
-    	<h3>Reviews</h3>
-
-	    {{#posts}}
-	        <h2>
-	        	{{ title }}
-	        	
-	        	{{#isOwner}}
-		        <a href="/edit/{{id}}" class="btn btn-primary btn-small">edit blog</a>
-		        {{/isOwner}}
-	        </h2>
-
-	        <p>{{& body }}</p>
-
-	        <br>
-	        
-
-	        <hr>
-	    {{/posts}}
-	    <br><br>
-
+    <div class="row-fluid">
+        <h1>Account</h1>
     </div>
-
     
+    <div class="row-fluid">
+        <div class="span4">
+
+        	<strong>User Name:</strong> {{username}}<br/>
+        	<strong>E-mail:</strong> {{email}}<br/>
+        	<strong>Current Address :</strong> 
+            <address>
+            	{{address.building}}, apt.{{address.apartment}},
+                {{address.city}}, {{address.zip }}<br/>
+            </address>
+            <strong>Date Moved In:</strong> {{dateMovedIn}}<br/>
+        	<strong>Date Moved Out:</strong> {{dateMovedOut}}
+        	<br><br/>
+        	{{#isOwner}}	
+    	        <a href="/edit_account/{{user_id}}" class="btn btn-small"><i class="icon-edit"></i> edit account</a>
+    	    {{/isOwner}}
+        </div>
+
+    <div class="span6">
+        	<legend style="margin-top: -8px;">Reviews</legend>
+
+    	    {{#posts}}
+
+    	        <span class="titles">{{ title }} </span>	
+                    <br/>Last updated: {{lastupdated}}
+
+    	        	{{#isOwner}}
+    		        <a href="/edit/{{id}}" class="btn btn-link">
+                    <i class="icon-edit"></i></a>
+    		        {{/isOwner}}
+    	        <br/>
+    	        {{& body }}
+
+                <h5>Comments</h5><br/> 
+                <p class="indent">
+                    {{#comments}}
+                     by <a href="mailto:{{user.email}}">{{name}}</a><br/>
+                     {{text}}
+                    {{/comments}}
+    	        </p>
+
+    	    {{/posts}}
+
+        </div> 
+
+     </div>   
 </div>

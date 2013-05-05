@@ -1,0 +1,73 @@
+<style>
+    textarea { width:xlarge; min-height: 150px;}
+</style>
+
+<div class="hero-unit">
+    <div class="row-fluid">
+       <div class="span12">
+        	<h1>{{blogPostTitle}}</h1>
+        </div> <!-- 1st row: page title -->
+
+        <div class="row-fluid">
+            <div class="span5">
+                {{#blogpost}}
+                    <strong>Category:</strong> {{category}}<br/>
+                    {{#isCon}}
+                    <strong>Positive Review</strong>
+                    {{/isCon}}
+                    {{^isCon}}
+                    <strong>Negative Review</strong>
+                    {{/isCon}}<br/>
+        	        <strong>by</strong> {{user.username}}<br/>
+        	        {{body}}</p>
+                {{/blogpost}}
+
+            </div>
+
+            <div class="span7">
+                <div class="display_thumbs">
+                    {{#blogpost}}
+                    {{#blogpost.photos}}
+                    <img src="https://s3.amazonaws.com/rentorvent/{{image}}" ><br/>
+                    <a href="/deleteImage/{{image}}/{{blogpost._id}}">Delete</a>
+                    {{/blogpost.photos}}
+                    {{/blogpost}}
+                    
+                </div>
+            </div>
+            </div><!-- 2nd row: blog post with images -->
+
+    <!-- 3rd row -->
+
+    <div class="row-fluid">
+        <div class="span5" id="empty container">
+        
+        </div> <!-- close comments container -->     
+        
+        <div class="span7">
+            <form class="form-horizontal" id="commentForm" 
+            method="POST" action="/comment/{{id}}">
+                
+                    <legend>Add a comment</legend>                   
+                    <div class="control-group">
+                        <label class="control-label" for="name">Your name</label>
+                        <div class="controls">
+                            <input type="text" name="name" id="name" hint="{{currentUser.username}}">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="text">Comment</label>
+                        <div class="controls">
+                            <textarea class="input-xlarge" id="text" name="text" rows="6" cols="50"></textarea>
+                        </div>
+                    </div>
+
+                        <button type="submit" class="btn" id="comment_submit">Comment</button>    
+                
+            </form>
+        </div> <!-- close "write a comment" container --> 
+    </div> <!-- close 3rd row --> 
+
+    </div> <!-- <div class="row-fluid"> that goes right after hero-unit and contains 2 rows and 4 divs-->
+</div> <!-- <div class="hero-unit"> -->
