@@ -81,6 +81,9 @@
 }
 
 @media (max-width: 767px) {
+  .hero-unit{
+    font-size: 2em;
+  }
   .hidden-desktop {
     display: inherit !important;
   }
@@ -110,7 +113,7 @@
 
 @media (min-width: 1200px) {
   .row {
-    margin-left: -30px;
+    margin-left: 0;
     *zoom: 1;
   }
   .row:before,
@@ -455,6 +458,83 @@
   }
   .row-fluid .thumbnails {
     margin-left: 0;
+  }
+
+
+.hero-unit {  
+  position: relative;
+    
+    overflow: auto;
+    padding: 0;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.2em;
+    color: inherit;
+    background-color: #efeded;
+    -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+    border: none;
+  }
+
+  #index{
+    padding: 0;
+  }
+
+  .hero-unit h1{
+    font-size: 1.5em; 
+    margin-bottom: 2%;
+    text-align: left;
+    float: left;
+    
+  }
+
+  #filter_by{
+    vertical-align: top;
+    font-weight: normal;
+  }
+
+  #rent{
+    padding: 0;
+    margin: 0;  
+    float: left; 
+    width: 100%;
+    
+  }
+
+  #vent{
+    position: absolute; 
+    width: 52%;
+    bottom: 0;
+    right: 0;
+    
+  }
+
+  #paragraph1{
+    float: left;
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    line-height: 1.7em;
+    padding-top: 70px;
+    padding-bottom: 60px;
+    padding-left: 65px;
+    padding-right: 120px;
+  }
+
+  #paragraph2{
+    clear: left;
+    padding-left: 40px;
+    padding-right: 0px;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    line-height: 1.7em;
   }
 }
 
@@ -805,6 +885,7 @@
     margin-top: 0px;
     padding-right: 20px;
     padding-left: 20px;
+
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom,
@@ -900,9 +981,195 @@
 }
 
 @media (max-width: 480px) {
+
+  #nav{
+    margin: 0;
+  }
+
+  .hero-unit {
+    width: 90%;
+    position: relative;
+    overflow: auto;
+    padding: 4.6%;
+    padding-top: 1%;
+    padding-bottom: 0;
+    margin: 0;
+    margin-top: 3%;
+    font-family: Arial;
+    font-size: 0.9em;
+    line-height: 1.2em;
+    color: inherit;
+    background-color: #efeded;
+    -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+    border: none;
+  }
+
+  #index{
+    width: 100%;
+    padding: 0;
+
+  }
+
+  .hero-unit h1{
+    
+    font-size: 1.5em; 
+    margin-bottom: 5%;
+    text-align: left;
+    float: left;
+  }
+
+  .hero-unit label {
+    display: block; 
+    margin-bottom: 1%;
+    font-size: 1em;
+    line-height: 1.2em;
+    color: black;
+    font-weight: bold;
+    width: 200px; 
+    text-align: left;
+    margin-right: 0;
+  }
+
+#label_checkbox {
+
+  margin-bottom: 10px;
+  display: block; 
+  float: left;
+  width: 267px; 
+  text-align: left;
+  padding-left: 0;
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+.btn{
+  font-size: 1em;
+}
+
+.hero-unit .submit{
+  display: block; 
+  margin: 0; 
+  padding: 0;
+}
+
+#submit_review{
+  display: block; 
+  margin-left: 0; 
+  
+}
+
+  #con{
+    margin-top: -10px;
+  }
+
+  #rent{
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    width: 50%;  
+  }
+
+  #vent{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+
+  }
+
+  #paragraph1{
+    clear: left;
+    margin: 0;
+    padding-bottom: 0;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: left;
+    font-family: Arial;
+    font-size: 1.1em;
+    line-height: 1.3em;
+  }
+
+  #paragraph2{
+    margin: 0;
+    margin-bottom: 15%;
+    padding: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: left;
+    font-family: Arial;
+    font-size: 1.1em;
+    line-height: 1.3em;
+  }
+
+  #checkbox {
+    margin-left: 0;
+    text-align: left;
+    width: 90%;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.2em;
+}
+
+input,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  line-height: 14px;
+  height: 14px;
+  margin-bottom: 2%;
+}
+
+select {
+  height: 22px;
+  width: 120px;
+  vertical-align: top;
+}
+
+#single_post{
+  float: left;
+}
+
+#comment_form_div{
+  margin-top: -40px;
+}
+
+#comment_submit{
+  margin-left: 0;
+}
+
+#user_acct_reviews{
+  margin-top: 15px;
+}
+
+.icon-edit {
+  background-position: -96px -72px;
+  vertical-align: baseline;
+}
+
+#button_icon{
+  vertical-align: middle;
+}
+
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
   }
+
   .page-header h1 small {
     display: block;
     line-height: 20px;

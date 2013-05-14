@@ -10,15 +10,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/bootstrap.css">
-        <link rel="stylesheet" href="/css/bootstrap-responsive.css">
         <link rel="stylesheet" href="/css/main.css">
-        <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-        
+        <link rel="stylesheet" href="/css/bootstrap-responsive.css"> 
+        <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>       
         <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/script.js"></script>
     </head>
-    <body>
 
-        <div class="navbar navbar-fixed-top">
+    <body class="body">
+
+        <div class="navbar navbar-fixed-top" id="nav">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
@@ -44,6 +45,7 @@
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
+            <script language="javascript">setPage()</script>
         </div>
 
         <div class="container">
@@ -54,12 +56,9 @@
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
-
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script>
-
+        <script src="/js/bootstrap.js"></script>
         <script src="/js/main.js"></script>
-
-         <script src="/js/bootstrap.js"></script>
 
         <script>
             var _gaq=[['_setAccount','UA-29253415-1'],['_trackPageview']];

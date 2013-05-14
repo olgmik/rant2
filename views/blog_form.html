@@ -42,22 +42,22 @@
 
 					<div class="field required">
 						<label for="post_address">Building Address</label>
-						<input type="text" name="building" id="id_building" value="{{blogpost.address.building}}">
+						<input type="text" name="building" id="building" value="{{blogpost.address.building}}">
 					</div>
 
 					<div class="field">
 						<label for="post_address">Apartment</label>
-						<input type="text" name="apartment" id="id_apartment" value="{{blogpost.address.apartment}}">
+						<input type="text" name="apartment" id="apartment" value="{{blogpost.address.apartment}}">
 					</div>
 
 					<div class="field required">
 						<label for="post_address">City</label>
-						<input type="text" name="city" id="id_city" value="{{blogpost.address.city}}">
+						<input type="text" name="city" id="city" value="{{blogpost.address.city}}">
 					</div>
 					
 					<div class="field required">
 						<label for="post_address">Zip Code</label>
-						<input type="text" name="zip" id="id_zip" value="{{blogpost.address.zip}}">
+						<input type="text" name="zip" id="zip" value="{{blogpost.address.zip}}">
 					</div>
 
 					<div class="field required">
@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="field required" id="checkbox">
-
+						<label for="isCon" id="label_checkbox">Leave checked if current review is a CON to living at the addres.<br/>Unchek if it's a PRO.</label>
 					{{#isCon}}
 						<input class="inline" type="checkbox" name="isCon" id="con" checked>						
 					{{/isCon}}
@@ -74,8 +74,9 @@
 					{{^isCon}}
 						<input class="inline" type="checkbox" name="isCon" id="pro">
 					{{/isCon}}
-					&nbsp;&nbsp;Leave checked if current review is a CON to living at the addres.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unchek if it's a PRO.</p>
 					</div>
+					 
+					
 
 					<div class="field">
 						<label for="image_title">1st Image Title</label>

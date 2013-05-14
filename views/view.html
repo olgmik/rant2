@@ -1,6 +1,8 @@
-<div class="hero-unit" >
-<div class="row-fluid">
-		<div class="span12">
+
+
+<div class="hero-unit">
+	<div class="row-fluid">	
+		<div class="span10">
 
 			<h1>Enter address to view</h1>
 
@@ -11,7 +13,7 @@
 				<input type="text" name="city" id="city" placeholder="city">
 				<input type="text" name="zip" id="zip" placeholder="zip">
 
-				&nbsp;&nbsp;<span class="titles">Filter by</span>&nbsp;&nbsp;
+				<span class="titles" id="filter_by"><br/>Filter by</span>
 				<select name="category">
 				  <option value="all">all</option>
 				  <option value="sound">sound</option>
@@ -26,15 +28,15 @@
 				  <option value="broker">broker</option>
 				  <option value="super">super</option>
 				  <option value="other">other</option>
-				</select>&nbsp;&nbsp;
+				</select><br/>
 				<input type="submit" id="search" value="Search">
 				</form>		
 			</div>
-		</div>
+</div>
 	<div class="row-fluid">	
-		<div class="span6">
+		<div class="span5">
 
-		<legend>Con</legend>
+		<legend id="con">Con</legend>
 	    {{#posts}}
 	    	{{#isCon}}
 		    	
@@ -49,7 +51,7 @@
 	    {{/posts}}
 		</div>
 
-		<div class="span6">
+		<div class="span5">
 
 	    <legend>Pro</legend>
 	    {{#posts}}
@@ -65,11 +67,10 @@
 	    	{{/isCon}}
 	    {{/posts}}
 		</div>
-
+	</div>
 		<div class="clear"></div>
 	</div>
 
     </div>
 </div>
 
-</div>

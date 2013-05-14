@@ -9,7 +9,7 @@
         </div> <!-- 1st row: page title -->
 
         <div class="row-fluid">
-            <div class="span5">
+            <div class="span5" id="single_post">
                 {{#blogpost}}
                     <strong>Category:</strong> {{category}}<br/>
                     {{#isCon}}
@@ -44,26 +44,15 @@
         
         </div> <!-- close comments container -->     
         
-        <div class="span7">
-            <form class="form-horizontal" id="commentForm" 
-            method="POST" action="/comment/{{id}}">
-                
-                    <legend>Add a comment</legend>                   
-                    <div class="control-group">
-                        <label class="control-label" for="name">Your name</label>
-                        <div class="controls">
-                            <input type="text" name="name" id="name" hint="{{currentUser.username}}">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="text">Comment</label>
-                        <div class="controls">
-                            <textarea class="input-xlarge" id="text" name="text" rows="6" cols="50"></textarea>
-                        </div>
-                    </div>
-
-                        <button type="submit" class="btn" id="comment_submit">Comment</button>    
+        <div class="span7" id="comment_form_div">
+            <legend>Add a comment</legend> 
+            <form id="commentForm" 
+            method="POST" action="/comment/{{id}}">   
+            <label>Your name</label>
+            <input type="text" name="name" id="name" value="{{currentUser.username}}"><br/>
+            <label>Comment</label>
+            <textarea class="input-xlarge" id="text" name="text" rows="6" cols="50"></textarea>
+            <button type="submit" class="btn" id="comment_submit">Comment</button>    
                 
             </form>
         </div> <!-- close "write a comment" container --> 

@@ -18,12 +18,13 @@
         	<strong>Date Moved Out:</strong> {{dateMovedOut}}
         	<br><br/>
         	{{#isOwner}}	
-    	        <a href="/edit_account/{{user_id}}" class="btn btn-small"><i class="icon-edit"></i> edit account</a>
+    	        <a href="/edit_account/{{user_id}}" class="btn btn-small"><i class="icon-edit" id="button_icon"></i> edit account</a>
     	    {{/isOwner}}
         </div>
 
-    <div class="span6">
-        	<legend style="margin-top: -8px;">Reviews</legend>
+    <div class="span6" id="user_acct_reviews">
+
+        	<legend id="user_acct_legend">Reviews</legend>
 
     	    {{#posts}}
 

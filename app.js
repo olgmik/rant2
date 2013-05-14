@@ -18,7 +18,7 @@ var app = express();
 app.configure(function(){
 
   // database
-  app.db = mongoose.connect(process.env.MONGOLAB_URI);
+  app.db = mongoose.connect(process.env.MONGOLAB_URI || "mongo://localhost/name_of_database");
 
   //  templates directory
   app.set('views', __dirname + '/views');
