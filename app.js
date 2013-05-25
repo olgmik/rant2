@@ -46,12 +46,12 @@ app.use(express.cookieParser(process.env.COOKIEHASH));
 
 // STORE SESSION IN MONGODB
 // mongoStore for session storage is using the connect-mongodb module
-app.use(express.session({ 
+/*app.use(express.session({ 
     store: new mongoStore({url:process.env.MONGOLAB_URI}),
     maxAge: 300000,
     secret: process.env.COOKIEHASH
   })
-);
+);*/
 
 // TURN ON PASSPORT AUTHENTICATION MODULE
 app.use(passport.initialize());
