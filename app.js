@@ -18,7 +18,7 @@ var app = express();
 app.configure(function(){
 
   // database
-  app.db = mongoose.connect(process.env.MONGOLAB_URI || "mongo://localhost/name_of_database");
+  app.db = mongoose.connect(process.env.MONGOLAB_URI);
 
   //  templates directory
   app.set('views', __dirname + '/views');
@@ -41,17 +41,16 @@ app.configure(function(){
 });
 
 // TURN ON COOKIES
-// COOKIEHASH in your .env file (must be available on heroku)
 app.use(express.cookieParser(process.env.COOKIEHASH));
 
 // STORE SESSION IN MONGODB
 // mongoStore for session storage is using the connect-mongodb module
-/*app.use(express.session({ 
+app.use(express.session({ 
     store: new mongoStore({url:process.env.MONGOLAB_URI}),
     maxAge: 300000,
     secret: process.env.COOKIEHASH
   })
-);*/
+);
 
 // TURN ON PASSPORT AUTHENTICATION MODULE
 app.use(passport.initialize());
