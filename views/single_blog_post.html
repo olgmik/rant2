@@ -3,12 +3,14 @@
 </style>
 
 <div class="hero-unit">
+
     <div class="row-fluid">
        <div class="span12">
         	<h1>{{blogPostTitle}}</h1>
         </div> <!-- 1st row: page title -->
 
-        <div class="row-fluid">
+        <div class="row-fluid"> <!-- Row 1, 1st cell: post and comments -->
+
             <div class="span5" id="single_post">
                 {{#blogpost}}
                     <strong>Category:</strong> {{category}}<br/>
@@ -22,9 +24,17 @@
         	        {{body}}</p>
                 {{/blogpost}}
 
-            </div>
-
-            <div class="span7">
+                <h5>Comments</h5><br/> 
+                     
+                <p class="indent">
+                    {{#comments}}
+                     by <a href="mailto:{{user.email}}">{{name}}</a><br/>
+                     {{text}}
+                    {{/comments}}
+                </p>
+            </div> <!-- 1st cell closed -->
+            
+            <div class="span7"> <!-- Row 1, 2nd cell: photos -->
                 <div class="display_thumbs">
                     {{#blogpost}}
                     {{#blogpost.photos}}
@@ -34,29 +44,29 @@
                     {{/blogpost}}
                     
                 </div>
-            </div>
-            </div><!-- 2nd row: blog post with images -->
+            </div> <!-- 2nd cell closed -->
+        </div><!-- 1st row closed -->
 
-    <!-- 3rd row -->
+        <div class="row-fluid"> <!-- 2nd row -->
 
-    <div class="row-fluid">
-        <div class="span5" id="empty container">
+            <div class="span5" id="empty"> <!-- 2nd row, 1st cell -->
+     
+            </div> <!-- close 1st cell -->     
         
-        </div> <!-- close comments container -->     
-        
-        <div class="span7" id="comment_form_div">
-            <legend>Add a comment</legend> 
-            <form id="commentForm" 
-            method="POST" action="/comment/{{id}}">   
-            <label>Your name</label>
-            <input type="text" name="name" id="name" value="{{currentUser.username}}"><br/>
-            <label>Comment</label>
-            <textarea class="input-xlarge" id="text" name="text" rows="6" cols="50"></textarea>
-            <button type="submit" class="btn" id="comment_submit">Comment</button>    
-                
-            </form>
-        </div> <!-- close "write a comment" container --> 
-    </div> <!-- close 3rd row --> 
+            <div class="span7" id="comment_form_div"> <!-- 2nd row, 2nd cell -->
+                <legend>Add a comment</legend> 
+                <form id="commentForm" 
+                method="POST" action="/comment/{{id}}">   
+                <label>Your name</label>
+                <input type="text" name="name" id="name" value="{{currentUser.username}}"><br/>
+                <label>Comment</label>
+                <textarea class="input-xlarge" id="text" name="text" rows="6" cols="50"></textarea>
+                <button type="submit" class="btn" id="comment_submit">Comment</button>                     
+                </form>
+
+            </div> <!-- close 2nd cell --> 
+
+        </div> <!-- close 2nd row --> 
 
     </div> <!-- <div class="row-fluid"> that goes right after hero-unit and contains 2 rows and 4 divs-->
 </div> <!-- <div class="hero-unit"> -->

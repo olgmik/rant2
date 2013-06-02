@@ -213,7 +213,7 @@ exports.getSinglePost = function(req,res) {
           currentUser : req.user,
           blogpost : blogpost
         };
-        console.log(template_data.comments.length);
+        console.log(blogpost.id);
         res.render('single_blog_post.html', template_data);
       } 
     });
@@ -221,7 +221,7 @@ exports.getSinglePost = function(req,res) {
 
 exports.postComment = function(req,res){
 
-  console.log(req.param('blog_id'));
+  console.log("blog id: " + req.param('blog_id'));
 
   Blog.findById(req.param('blog_id'), function(err, blogpost){
 
