@@ -8,11 +8,11 @@ var express = require('express')
   , path = require('path')
   , ejs = require('ejs')
   , mongoose = require('mongoose')
-  , mongoStore = require('connect-mongo')(express)
   , passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
   
 var app = express();
+var mongoStore = require('connect-mongo')(express); 
 
 // Express app configuration 
 app.configure(function(){
@@ -41,14 +41,13 @@ app.configure(function(){
 });
 
 // TURN ON COOKIES
-app.use(express.cookieParser(process.env.COOKIEHASH));
+app.use(express.cookieParser());
 
 // STORE SESSION IN MONGODB
 // mongoStore for session storage is using the connect-mongodb module
 app.use(express.session({ 
     store: new mongoStore({
-      url:process.env.MONGOLAB_URI}),
-      maxAge: 300000,
+      url: process.env.MONGOLAB_URI
     }),
     secret: process.env.COOKIEHASH
 }));
