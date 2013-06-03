@@ -41,13 +41,13 @@ app.configure(function(){
 });
 
 // TURN ON COOKIES
-app.use(express.cookieParser());
+app.use(express.cookieParser(process.env.COOKIEHASH));
 
 // STORE SESSION IN MONGODB
 // mongoStore for session storage is using the connect-mongodb module
 app.use(express.session({ 
     store: new MongoStore({
-      url: 'mongodb://heroku_app15097062:jjbt5669mdch06hqik2beme3hb@ds053937.mongolab.com:53937/heroku_app15097062'
+      url: process.env.MONGOLAB_URI
     }),
     secret: process.env.COOKIEHASH
 }));
