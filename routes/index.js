@@ -333,7 +333,7 @@ var cleanBuilding = function(building) {
 }
 
 var cleanFileName = function(filename) {
-    
+    console.log(filename);
     fileParts = filename.split(".");
     
     //get the file extension

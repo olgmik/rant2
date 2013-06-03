@@ -8,7 +8,10 @@ var User = require('../models/user.js');
 exports.ensureAuthenticated = function(req, res, next) {
     console.log("is Authenticated:" + req.isAuthenticated());
     
-    if (req.isAuthenticated()) { return next(); }
+    if (req.isAuthenticated()) { 
+      return next(); 
+    }
+    
     res.redirect('/login');
 }
 
