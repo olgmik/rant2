@@ -85,7 +85,7 @@ app.post('/write', account.ensureAuthenticated, routes.write_post);
 
 // edit a blog post
 app.get('/edit/:blog_id', account.ensureAuthenticated, routes.edit);
-app.post('/edit/:blog_id', account.ensureAuthenticated, routes.edit_post);
+//app.post('/edit/:blog_id', account.ensureAuthenticated, routes.edit_post);
 app.get('/deleteImage/:imagefileName/:blog_id', account.ensureAuthenticated, routes.deleteImage);
 
 // get single blog post
