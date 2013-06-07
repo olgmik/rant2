@@ -9,7 +9,9 @@ exports.ensureAuthenticated = function(req, res, next) {
     console.log("is Authenticated:" + req.isAuthenticated());
     
     if (req.isAuthenticated()) { 
+
       return next(); 
+
     }
     
     res.redirect('/login');
@@ -17,32 +19,43 @@ exports.ensureAuthenticated = function(req, res, next) {
 
 // Login display
 exports.login = function(req, res) {
+
 	templateData = {
 		user:req.user,
+
 	}
 
 	res.render('account/login.html', templateData);
+
 };
 
 // Login post
 exports.login_post = function(req, res) {
+
 	res.redirect('/write');
+
 };
 
 // logout
 exports.logout = function(req, res) {
+
 	req.logout();
     res.redirect('/');
+
 };
 
 exports.register = function(req, res) {
+
     res.render('account/register.html', { });
+
 };
 
 exports.register_post = function(req, res) {
 
 	if (req.body.password != req.body.confirm) {
+
 		return res.render('account/register.html');
+
 	} else {
 
         var addressData = {
@@ -51,21 +64,29 @@ exports.register_post = function(req, res) {
           apartment : req.body.apartment,
           city : req.body.city,
           zip : req.body.zip
+
         }
 
-        User.register(new User({ username : req.body.username, 
+        User.register(new User({ 
+
+          username : req.body.username, 
           email : req.body.email, 
           address : addressData,
           dateMovedIn: req.body.dateMovedIn, 
           dateMovedOut: req.body.dateMovedOut }), 
           req.body.password, function(err, new_user) {
+
             if (err) {
+
                 console.log(err)
                 return res.render('account/register.html');
+
             }
+
             console.log("**********");
             console.log(new_user);
             res.redirect('/write');
+
         });
     }
 };
@@ -82,9 +103,7 @@ exports.edit = function(req,res){
     var formattedDateOut = tempDateOut.format("YYYY-MM-DD");
 
     var template_data = {
-          /*user_id : user.id,
-          username : user.username,
-          email : user.email,*/
+
           currentUser: user,
           user_id: user.id,
           dateMovedIn : formattedDateIn,
@@ -108,23 +127,25 @@ exports.saveEdit = function(req,res) {
 
   if (req.param('user_id') != undefined) { 
 
-   User.findById(req.param('user_id'), function(err, user){
+    User.findById(req.param('user_id'), function(err, user){
 
     console.log("found user");
     console.log("got from edit_account_form.html user_id: " + user_id);
    
     if (err) {
+
         console.log(err);
         res.send("uh oh, can't find that note");
-    }
 
-    else {
+    } else {
 
       var addressData = {
+
               building : req.body.building,
               apartment : req.body.apartment,
               city : req.body.city,
               zip : req.body.zip
+              
             }
 
       user.username = req.body.username;
@@ -134,10 +155,6 @@ exports.saveEdit = function(req,res) {
       user.dateMovedOut = req.body.dateMovedOut;
       user.password= req.body.password;
       user.save();
-      
-      /*if (req.user != undefined){
-            template_data.isOwner = (req.user.id == user.id)
-          }*/
 
       res.redirect('/user/' + user.username); 
 

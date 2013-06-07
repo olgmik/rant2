@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
- // Comment - is an embedded document for blogSchema
 var commentsSchema = new Schema({
     name      : String,
     text      : String,

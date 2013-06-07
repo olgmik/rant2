@@ -14,6 +14,8 @@ AWS.config.update({
 });
 var s3 = new AWS.S3();
 
+var filename; 
+
 exports.index = function(req,res){
 
   var query = User.find({});
@@ -74,9 +76,10 @@ exports.view =  function(req,res){
   
 };
 
-exports.filtered_posts = function(req,res) 
-{
+exports.filtered_posts = function(req,res) {
+
   console.log(req.body); 
+
   var blogQuery;
 
   if(req.body.category != "all"){
@@ -84,11 +87,13 @@ exports.filtered_posts = function(req,res)
     blogQuery = Blog.find({ 
  
      $and: [ 
+
       { 'category': req.body.category },
       {'address.building' : req.body.building.toLowerCase()},
       //{ apartment: req.body.apartment },
       {'address.city' : req.body.city.toLowerCase()}
       //{ zip: req.body.zip }
+
       ]
 
       });
@@ -110,46 +115,49 @@ exports.filtered_posts = function(req,res)
     var matches; 
     var greeting; 
 
-  blogQuery.exec(function(err, posts)
+  blogQuery.exec(function(err, posts) {
+    
+    if (err) {
 
-    {
-    if (err) 
-    {
       res.send('error');
+
     }
 
-    else if (!posts) 
-    {
+    else if (!posts) {
+
       res.send('unable to find any posts');  
-    } 
-    else  // if posts exist render the page with those posts
-    {
+    
+    } else {
+
       console.log(posts); 
 
-    for(i=0; i < posts.length; i++) {
+      for(i=0; i < posts.length; i++) {
 
-      if (posts[i].address.apartment == req.body.apartment.toLowerCase()) 
-      {
+        if (posts[i].address.apartment == req.body.apartment.toLowerCase()){
         console.log("exact match was found: " + posts[i]); 
         greeting="exact match was found: "; 
         matches = posts[i]; 
-      } 
-      else 
-      {
+
+        } else {
+
         console.log("no exact match"); 
         greeting = "building matches found: "; 
         matches = posts[i]; 
-      }
-    } // close "for loop"; 
+
+        }
+
+      } 
 
     var template_data = {
+
             title : greeting,
             posts : matches,
             bloguser : req.user,
             currentUser : req.user    
+
           };
 
-  res.render('category_posts.html', template_data);
+    res.render('category_posts.html', template_data);
       
     } // else - if posts exist render the page with those posts
   }); // blogQuery.exec(function(err, posts)
@@ -163,6 +171,7 @@ exports.category_posts = function(req, res) {
       category:req.body.category} );
 
       blogQuery.sort('-lastupdated');
+
       blogQuery.exec(function(err, posts_by_category) {
 
     if (err) {
@@ -179,11 +188,10 @@ exports.category_posts = function(req, res) {
           };
 
           res.render('category_posts.html', template_data);
-    }
-
-  })
-  
-};
+          
+          }
+    })
+  };
 
 exports.getSinglePost = function(req,res) {
 
@@ -239,13 +247,13 @@ exports.postComment = function(req,res){
         var commentData = {
                 name : name,
                 text : text
-            };
+        };
 
         // append the comment to the comment list
         blogpost.comments.push(commentData);
         blogpost.save();
 
-                res.redirect('/get_single_post/' + blogpost.id);
+          res.redirect('/get_single_post/' + blogpost.id);
 
         });
 };
@@ -266,15 +274,6 @@ exports.user_posts = function(req, res) {
 
     } else {
 
-     /* user.formattedMoveInDate = function() {
-            return moment(this.dateMovedIn).format("dddd, MMMM Do YYYY");
-        };*/
-    
-    // now we have info about that entire User document
-    // including user.id
-    // so now we can find document Blog that, in its "user" field
-    // has the same user.id as out User document
-
       var query = Blog.find({user:user.id});
       query.sort('-lastupdated');
       query.exec(function(err, blogposts){
@@ -284,7 +283,6 @@ exports.user_posts = function(req, res) {
 
         } else {
 
-          // transform dates into display format
           var tempDateIn = moment(user.dateMovedIn);
           var formattedDateIn = tempDateIn.format("YYYY-MM-DD");
           var tempDateOut = moment(user.dateMovedOut);
@@ -314,14 +312,11 @@ exports.user_posts = function(req, res) {
           }
 
           res.render('user_posts.html', template_data);
-        }
-        
+
+        }       
       });
-
     }
-
-  })
-  
+  })  
 }
 
 var cleanBuilding = function(building) {
@@ -333,6 +328,7 @@ var cleanBuilding = function(building) {
 }
 
 var cleanFileName = function(filename) {
+
     console.log(filename);
     fileParts = filename.split(".");
     
@@ -347,7 +343,7 @@ var cleanFileName = function(filename) {
     newFileName = fileParts[0];
     
     return newFilename = timeStr + "_" + fileParts[0].toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_') + "." + fileExtension;
-    
+
 }
 
 // controller for individual note view
@@ -360,7 +356,8 @@ exports.write = function(req, res){
     isCon: true
   };
 
-  res.render('blog_form.html', template_data)
+  res.render('blog_form.html', template_data);
+
 };
 
 exports.write_post = function(req, res){
@@ -372,33 +369,41 @@ exports.write_post = function(req, res){
   var blogID = req.param.blog_id;
 
   if(blogID) {
+
     Blog.findById(blogID, function(err, blogpost){
 
-        if (err) {
-          res.send("unable to find the note");
+      if (err) {
+        res.send("unable to find the note");
+      }
+
+      blogpost.title = req.body.title;
+      blogpost.body = req.body.body;
+      blogpost.isCon = function () {
+
+        if (req.body.isCon !== "undefined") {
+
+          return true;
+
+        } else {
+
+          return false;
+
         }
 
-        blogpost.title = req.body.title;
-        blogpost.body = req.body.body;
-        blogpost.isCon = function () {
-          if (req.body.isCon !== "undefined") {
-            return true;
-          } else {
-            return false;
-          }
-        };
-        blogpost.category = req.body.category;
-        blogpost.address.building = cleanedBuilding;
-        blogpost.address.apartment = req.body.apartment.toLowerCase();
-        blogpost.address.city = req.body.city.toLowerCase();
-        blogpost.address.zip = req.body.zip.toLowerCase(); 
-        blogpost.video = req.body.video;
-        blogpost.save(); 
-        res.redirect('/edit/'+blogpost.id);
+      };
 
-      });
-  }
-  else {
+      blogpost.category = req.body.category;
+      blogpost.address.building = cleanedBuilding;
+      blogpost.address.apartment = req.body.apartment.toLowerCase();
+      blogpost.address.city = req.body.city.toLowerCase();
+      blogpost.address.zip = req.body.zip.toLowerCase(); 
+      blogpost.video = req.body.video;
+      blogpost.save(); 
+      res.redirect('/edit/'+blogpost.id);
+
+    });
+
+  } else {
 
     // Create a new blog post
     var blogpost = new Blog(); // create Blog object
@@ -418,12 +423,12 @@ exports.write_post = function(req, res){
     blogpost.user = req.user; 
 
 
-    var filename = req.files.image.filename; // filename of file on mAc
+    filename = req.files.image.filename; // filename of file on Mac
     var path = req.files.image.path; //will be put into a temp directory
     var mimeType = req.files.image.type; // image/jpeg or actual mime type
 
     // 2) create file name with logged in user id 
-    // + cleaned up existing file name. function defined above.
+    // + cleaned up existing file name (function defined above)
     var cleanedFileName = cleanFileName(filename);
 
     // 3a) We first need to open and read the image upload into a buffer
@@ -465,11 +470,8 @@ exports.write_post = function(req, res){
       res.redirect('/edit/'+blogpost.id);
 
     });
-
-  });
-    
+  });  
   }
-
 };
 
 exports.deleteImage= function(req,res){
@@ -486,24 +488,22 @@ exports.deleteImage= function(req,res){
 
       s3.client.deleteObject({Bucket: 'rentorvent', Key : imagetobeDeleted}, function(err,data){
         
-        console.log(data);
+      console.log(data);
 
-          for(i=0;i<blogpost.photos.length;i++){
-            if(blogpost.photos[i].image==imagetobeDeleted){
-            positionofImage=i;
+        for(i=0;i<blogpost.photos.length;i++){
+          if(blogpost.photos[i].image==imagetobeDeleted){
+          positionofImage=i;
         }
-  }
+    }
+
     blogpost.photos.splice(positionofImage,1);
 
     blogpost.save(); 
 
             res.redirect('/edit/'+blogpost.id);
     });
-  
   }
-
 });
-
 };
 
 exports.edit = function(req,res) {
@@ -522,8 +522,7 @@ exports.edit = function(req,res) {
         res.send('You do not own this blog post.');
       
       } else {
-
-        
+    
         var template_data = {
           title : 'Edit Blog Post',
           blogpost : blogpost,
@@ -532,6 +531,7 @@ exports.edit = function(req,res) {
         };
 
         res.render('blog_form.html', template_data);
+
       } 
 
     });
